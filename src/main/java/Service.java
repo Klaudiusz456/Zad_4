@@ -27,7 +27,16 @@ public class Service {
         } catch (IOException e) {
             System.out.println("Błąd odczytu");
         }
-
         return list;
+    }
+
+    static Student findStudentByName(String name) {
+        List<Student> students = load();
+        for (Student s : students) {
+            if (s.getName().equalsIgnoreCase(name)) {
+                return s;
+            }
+        }
+        return null;
     }
 }
