@@ -12,23 +12,20 @@ public class Main {
 
         if (option == 1) {
             System.out.print("Imię: ");
-            String firstName = sc.nextLine();
-
-            System.out.print("Nazwisko: ");
-            String lastName = sc.nextLine();
+            String name = sc.nextLine();
 
             System.out.print("Wiek: ");
             int age = sc.nextInt();
             sc.nextLine();
 
-            System.out.print("Nr indeksu: ");
-            String index = sc.nextLine();
+            System.out.print("Data urodzenia: ");
+            String birthDate = sc.nextLine();
 
-            Student s = new Student(firstName, lastName, age, index);
-            Service.saveStudent(s);
+            Student s = new Student(name, age, birthDate);
+            Service.save(s);
         } 
         else if (option == 2) {
-            List<Student> students = Service.loadStudents();
+            List<Student> students = Service.load();
             students.forEach(System.out::println);
         }
     }

@@ -3,32 +3,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Service {
-    private static final String FILE_NAME = "students.txt";
+    static String FILE = "db.txt";
 
-    public static void saveStudent(Student student) {
-        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(FILE_NAME, true)))) {
-            out.println(student.getFirstName() + ";" + student.getLastName() + ";" + student.getAge() + ";" + student.getIndex());
+    static void save(Student s) {
+        try (FileWriter fw = new FileWriter(FILE, true)) {
+            fw.write(s.getName() + ";" + s.getAge() + ";" + s.getBirthDate() + "\n");
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Błąd zapisu");
         }
     }
 
-    public static List<Student> loadStudents() {
-        List<Student> students = new ArrayList<>();
-        File file = new File(FILE_NAME);
-        if (!file.exists()) return students;
+    static List<Student> load() {
+        List<Student> list = new ArrayList<>();
 
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(FILE))) {
             String line;
             while ((line = br.readLine()) != null) {
-                String[] parts = line.split(";");
-                if (parts.length == 4) {
-                    students.add(new Student(parts[0], parts[1], Integer.parseInt(parts[2]), parts[3]));
+                String[] p = line.split(";");
+                if (p.length == 3) {
+                    list.add(new Student(p[0], Integer.parseInt(p[1]), p[2]));
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Błąd odczytu");
         }
-        return students;
+
+        return list;
     }
 }

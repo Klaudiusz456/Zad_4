@@ -1,23 +1,32 @@
 public class Student {
-    private String firstName;
-    private String lastName;
+    private String name;
     private int age;
-    private String index;
+    private String birthDate;
 
-    public Student(String firstName, String lastName, int age, String index) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Student(String name, int age, String birthDate) {
+        this.name = name;
         this.age = age;
-        this.index = index;
+        this.birthDate = birthDate;
     }
 
-    public String getFirstName() { return firstName; }
-    public String getLastName() { return lastName; }
-    public int getAge() { return age; }
-    public String getIndex() { return index; }
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getBirthDate() {
+        return birthDate;
+    }
 
     @Override
     public String toString() {
-        return firstName + " " + lastName + " (" + age + "), index: " + index;
+        return "Student{" +
+                "imię='" + name + '\'' +
+                ", wiek=" + age +
+                ", data urodzenia='" + birthDate + '\'' +
+                '}';
     }
 }
